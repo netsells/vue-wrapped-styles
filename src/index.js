@@ -1,3 +1,10 @@
+/**
+ * Wrap a component to style it or change the props
+ *
+ * @param {object} Component
+ * @param {object} config
+ * @returns {object}
+ */
 function wrapComponent(Component, {
     wrappedComponentName = Component.name || 'no-name-component',
     name = ['wrapped', wrappedComponentName].join('-'),

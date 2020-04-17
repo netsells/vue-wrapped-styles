@@ -19,10 +19,12 @@ const BaseComponent = {
     `,
 };
 
-
 describe('wrapComponent', () => {
     let Component;
 
+    /**
+     * Tests shared by multiple configs
+     */
     const sharedTests = () => {
         it('returns a component', () => {
             expect(Component).toEqual(expect.objectContaining({
@@ -30,7 +32,7 @@ describe('wrapComponent', () => {
                 props: expect.any(Object),
                 components: expect.any(Object),
                 template: expect.any(String),
-            }))
+            }));
         });
 
         it('should have matching props', () => {
@@ -49,7 +51,7 @@ describe('wrapComponent', () => {
             });
 
             it('renders the template', () => {
-                expect(wrapper.html()).toEqual(BaseComponent.template.trim());
+                expect(wrapper.html()).toEqual('<div>\n  Text\n</div>');
             });
         });
     };
