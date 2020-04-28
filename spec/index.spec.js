@@ -12,26 +12,34 @@ const BaseComponent = {
         },
     },
 
-    template: `
-        <div>
-            Text
-        </div>
-    `,
+    /**
+     * Render
+     *
+     * @param {function} h
+     * @returns {VNode}
+     */
+    render(h) {
+        return h('div', {}, 'Text');
+    },
 };
 
 describe('wrapComponent', () => {
     let Component;
 
-    /**
-     * Tests shared by multiple configs
-     */
-    const sharedTests = () => {
+    it('is a function', () => {
+        expect(wrapComponent).toEqual(expect.any(Function));
+    });
+
+    describe('when called with a component', () => {
+        beforeEach(() => {
+            Component = wrapComponent(BaseComponent);
+        });
+
         it('returns a component', () => {
             expect(Component).toEqual(expect.objectContaining({
                 name: expect.any(String),
                 props: expect.any(Object),
-                components: expect.any(Object),
-                template: expect.any(String),
+                render: expect.any(Function),
             }));
         });
 
@@ -51,45 +59,7 @@ describe('wrapComponent', () => {
             });
 
             it('renders the template', () => {
-                expect(wrapper.html()).toEqual('<div>\n  Text\n</div>');
-            });
-        });
-    };
-
-    it('is a function', () => {
-        expect(wrapComponent).toEqual(expect.any(Function));
-    });
-
-    describe('when called with a component', () => {
-        beforeEach(() => {
-            Component = wrapComponent(BaseComponent);
-        });
-
-        sharedTests();
-
-        it('should have the component registered', () => {
-            expect(Component.components).toEqual({
-                ['base-component']: BaseComponent,
-            });
-        });
-    });
-
-    describe('when called with a component with no name', () => {
-        const ComponentWithNoName = {
-            ...BaseComponent,
-
-            name: undefined,
-        };
-
-        beforeEach(() => {
-            Component = wrapComponent(ComponentWithNoName);
-        });
-
-        sharedTests();
-
-        it('should have the component registered', () => {
-            expect(Component.components).toEqual({
-                ['no-name-component']: ComponentWithNoName,
+                expect(wrapper.html()).toEqual('<div>Text</div>');
             });
         });
     });
