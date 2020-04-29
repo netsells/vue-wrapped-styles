@@ -1,6 +1,6 @@
 {
   "name": "@netsells/vue-wrapped-styles",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Wraps a component to add styles or change the default props",
   "main": "dist/index.js",
   "scripts": {

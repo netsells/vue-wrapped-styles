@@ -31,8 +31,9 @@ function wrapComponent(Component, {
                     props: this.$props,
                     attrs: this.$attrs,
                     on: this.$listeners,
+                    scopedSlots: this.$scopedSlots,
+                    slots: this.$slots,
                 },
-                this.$children,
             );
         },
     };
