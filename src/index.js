@@ -27,7 +27,11 @@ function wrapComponent(Component, {
         render(h) {
             return h(
                 Component,
-                { ...this.$data },
+                {
+                    props: this.$props,
+                    attrs: this.$attrs,
+                    on: this.$listeners,
+                },
                 this.$children,
             );
         },
