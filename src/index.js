@@ -13,8 +13,6 @@ function wrapComponent(Component, {
     return {
         name,
 
-        functional: true,
-
         props: {
             ...Component.props,
             ...props,
@@ -24,14 +22,13 @@ function wrapComponent(Component, {
          * Render child component
          *
          * @param {function} h
-         * @param {object} context
          * @returns {VNode}
          */
-        render(h, { data, children }) {
+        render(h) {
             return h(
                 Component,
-                data,
-                children,
+                { ...this.$data },
+                this.$children,
             );
         },
     };

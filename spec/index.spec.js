@@ -61,6 +61,16 @@ describe('wrapComponent', () => {
             it('renders the template', () => {
                 expect(wrapper.html()).toEqual('<div>Text</div>');
             });
+
+            describe('when props change', () => {
+                beforeEach(() => {
+                    wrapper.setProps({ foo: 'bar' });
+                });
+
+                it('updates the wrapped props', () => {
+                    expect(wrapper.find(BaseComponent).props('foo')).toEqual('bar');
+                });
+            });
         });
     });
 });
